@@ -1,0 +1,17 @@
+#include <io.h>
+#include <altera_avalon_performance_counter.h>
+void main() {
+PERF_RESET(PERFORMANCE_COUNTER_BASE);
+PERF_START_MEASURING(PERFORMANCE_COUNTER_BASE);
+PERF_BEGIN (PERFORMANCE_COUNTER_BASE,1);
+for(int i=0; i<1000; i++)
+PERF_END (PERFORMANCE_COUNTER_BASE,1);
+PERF_BEGIN (PERFORMANCE_COUNTER_BASE,2);
+if (1 == 1) 
+PERF_END (PERFORMANCE_COUNTER_BASE,2);
+PERF_STOP_MEASURING(PERFORMANCE_COUNTER_BASE);
+perf_print_formatted_report(PERFORMANCE_COUNTER_BASE, alt_get_cpu_freq(), 2, FIRST COL, SECOND COL);
+}
+
+{printf("iteration: %d\n", i);}
+{	int z = 0;}
